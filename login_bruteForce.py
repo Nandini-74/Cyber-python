@@ -1,96 +1,80 @@
 """
-Login Brute Force Simulator (Learning Version)
+Brute Force Login Simulator
 
-This program simulates a brute-force attack on a login system.
+This module simulates a brute-force attack on a login system.
 
-It tries multiple passwords from a wordlist until it finds the correct one.
+It:
+- Takes username input
+- Tries multiple passwords from a wordlist
+- Stops when correct password is found
+- Locks after too many attempts
 
-Features:
-- Username input
-- Password guessing using list
-- Attempt limiting (account lock)
-- Delay to simulate real attack
-- Time taken to crack password
-
- Educational purpose only
+⚠️ Educational purpose only
 """
 
-import time   # used to add delay and track time
+import time  # used to simulate delay
 
 
 def brute_force_login():
-    
+    """
+    This function performs a brute-force attack simulation.
+    """
+
     # -------------------------------
     # Step 1: Setup correct credentials
     # -------------------------------
+    
     correct_username = "admin"
     correct_password = "secure@123"
 
     # -------------------------------
-    # Step 2: Take username input
+    # Step 2: Take user input
     # -------------------------------
+    
     username = input("Enter username: ")
 
     # -------------------------------
-    # Step 3: Create wordlist (password guesses)
+    # Step 3: Wordlist (password guesses)
     # -------------------------------
+    
     wordlist = ["123456", "password", "admin123", "letmein", "secure@123"]
 
     # -------------------------------
     # Step 4: Initialize counters
     # -------------------------------
+    
     attempts = 0
     max_attempts = 5
-
-    # -------------------------------
-    # Step 5: Start timer
-    # -------------------------------
-    start_time = time.time()
 
     print("\nStarting brute force attack...\n")
 
     # -------------------------------
-    # Step 6: Loop through each password
+    # Step 5: Loop through passwords
     # -------------------------------
+    
     for password in wordlist:
-        
-        # simulate delay (real attack feel)
-        time.sleep(0.5)
+        time.sleep(0.5)  # simulate real attack delay
 
-        # show current attempt
         print(f"Trying: {password}")
-
-        # increase attempt count
         attempts += 1
 
         # -------------------------------
-        # Step 7: Check credentials
+        # Step 6: Check credentials
         # -------------------------------
+        
         if username == correct_username and password == correct_password:
-            print("\n ACCESS GRANTED")
+            print("\n✅ ACCESS GRANTED")
             print(f"Password found: {password}")
             print(f"Attempts: {attempts}")
-            
-            # stop timer
-            end_time = time.time()
-            print(f"Time taken: {end_time - start_time:.2f} seconds")
             break
 
         else:
-            print("Incorrect")
+            print("❌ Incorrect")
 
         # -------------------------------
-        # Step 8: Lock account after max attempts
+        # Step 7: Lock mechanism
         # -------------------------------
+        
         if attempts >= max_attempts:
-            print("\n Account Locked! Too many failed attempts.")
-            
-            end_time = time.time()
-            print(f"Time taken: {end_time - start_time:.2f} seconds")
+            print("\n🔒 Account Locked! Too many attempts.")
             break
-
-
-# -------------------------------
-# Step 9: Run the program
-# -------------------------------
-brute_force_login()
