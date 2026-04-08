@@ -7,7 +7,7 @@ It:
 - Checks email format
 - Checks password strength
 
-⚠️ Educational purpose only
+Educational purpose only
 """
 
 import re  # used for pattern matching
