@@ -9,7 +9,7 @@ It:
 - Stops when correct password is found
 - Locks after too many attempts
 
-⚠️ Educational purpose only
+Educational purpose only
 """
 
 import time  # used to simulate delay
@@ -63,18 +63,18 @@ def brute_force_login():
         # -------------------------------
         
         if username == correct_username and password == correct_password:
-            print("\n✅ ACCESS GRANTED")
+            print("\n ACCESS GRANTED")
             print(f"Password found: {password}")
             print(f"Attempts: {attempts}")
             break
 
         else:
-            print("❌ Incorrect")
+            print(" Incorrect")
 
         # -------------------------------
         # Step 7: Lock mechanism
         # -------------------------------
         
         if attempts >= max_attempts:
-            print("\n🔒 Account Locked! Too many attempts.")
+            print("\n Account Locked! Too many attempts.")
             break
