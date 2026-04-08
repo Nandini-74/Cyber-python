@@ -1,28 +1,56 @@
-import re
+"""
+Input Validation Tool
 
-def validate_phone_number(phone):
-    pattern = r'^[0-9]{10}$'
-    return bool(re.match(pattern, phone))
+This module validates user inputs such as email and password.
 
-def validate_emali(email):
-    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    return bool(re.match(pattern, email))
+It:
+- Checks email format
+- Checks password strength
 
-def main():
-    phone_number = input()
-    email = input()
+⚠️ Educational purpose only
+"""
 
-    is_phone_vaild = validate_phone_number(phone_number)
-    is_email_valid = validate_email(email)
+import re  # used for pattern matching
 
-    if is_phone_valid and is_email_valid:
-        print("Both are valid")
-    elif is_phone_valid and not is_email_valid:
-        print("Phone number is valid, but the email is not valid")
-    elif not is_phone_valid and is_email_valid:
-        print("Email is valid, but the phone number is not valid")
+
+def validate_input():
+    """
+    This function validates email and password input.
+    """
+
+    # -------------------------------
+    # Step 1: Take user input
+    # -------------------------------
+    
+    email = input("Enter email: ")
+    password = input("Enter password: ")
+
+    # -------------------------------
+    # Step 2: Validate Email
+    # -------------------------------
+    
+    email_pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+
+    if re.match(email_pattern, email):
+        print("✅ Valid Email")
     else:
-        print("Both are invalid")
+        print("❌ Invalid Email")
 
-if __name__ == "__main__":
-    main()
+    # -------------------------------
+    # Step 3: Validate Password
+    # -------------------------------
+    
+    if len(password) < 8:
+        print("❌ Password too short")
+    
+    elif not any(char.isupper() for char in password):
+        print("❌ Must include uppercase letter")
+    
+    elif not any(char.islower() for char in password):
+        print("❌ Must include lowercase letter")
+    
+    elif not any(char.isdigit() for char in password):
+        print("❌ Must include a number")
+    
+    else:
+        print("✅ Strong Password")
